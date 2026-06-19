@@ -1,0 +1,92 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Producto</title>
+
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+</head>
+
+<body>
+
+<div class="admin-container">
+
+
+<h1 class="admin-title">
+    ✏️ Editar Producto
+</h1>
+
+<form method="POST" enctype="multipart/form-data" class="form-admin">
+
+    {% csrf_token %}
+
+    <p>
+        Nombre:
+        <input
+            type="text"
+            name="nombre"
+            value="{{ producto.nombre }}"
+            required
+        >
+    </p>
+
+    <p>
+        Precio:
+        <input
+            type="number"
+            name="precio"
+            value="{{ producto.precio }}"
+            required
+        >
+    </p>
+
+    <p>
+        Descripción:
+        <textarea
+            name="descripcion"
+            rows="5"
+        >{{ producto.descripcion }}</textarea>
+    </p>
+
+    <p>
+        Imagen:
+        <input
+            type="file"
+            name="imagen"
+        >
+    </p>
+    
+    <p>
+        Stock:
+        <input
+            type="number"
+            name="stock"
+            value="{{ producto.stock }}"
+            required
+        >
+    </p>
+
+    <button type="submit">
+        💾 Guardar Cambios
+    </button>
+
+</form>
+
+<br>
+
+<a href="{% url 'admin_productos' %}" class="admin-btn">
+    ⬅️ Volver
+</a>
+
+
+</div>
+
+</body>
+</html>
