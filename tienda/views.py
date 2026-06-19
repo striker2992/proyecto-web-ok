@@ -141,15 +141,18 @@ def finalizar_compra(request):
         request,
         'tienda/compra_exitosa.html'
     )
+
+
+@login_required(login_url='/accounts/login/')
 def mis_compras(request):
 
     pedidos = Pedido.objects.filter(
         usuario=request.user
-    ).order_by('-fecha')
+    ).order_by('-id')
 
     return render(
         request,
-        'tienda/mis_compras.html',
+        'mis_compras.html',
         {
             'pedidos': pedidos
         }
